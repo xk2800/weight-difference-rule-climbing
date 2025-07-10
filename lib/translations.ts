@@ -9,6 +9,7 @@ export const translations = {
     kg: "kg",
     lbs: "lbs",
     calculate: "Calculate Safety",
+    calculating: "Calculating...",
     results: "Safety Assessment",
     safe: "✅ Safe Combination",
     caution: "⚠️ Use with Caution",
@@ -38,7 +39,8 @@ export const translations = {
     belayerSignificantlyHeavierSafe: "Belayer is significantly heavier. A dynamic belay is crucial to prevent a hard catch and potential injury to the climber. This remains a safe belayer-climber weight combination.",
     climberSignificantlyHeavierUnsafe: "Climber is significantly heavier than the belayer. High risk of belayer being pulled hard into the wall or first anchor. A ground anchor is strongly recommended.",
     climberHeavierCaution: "Climber is heavier than the belayer. Belayer must use proper technique and positioning to manage falls. Consider a ground anchor.",
-    weightDifferenceAcceptable: "Weight difference is acceptable. Maintain proper belay technique and awareness."
+    weightDifferenceAcceptable: "Weight difference is acceptable. Maintain proper belay technique and awareness.",
+    disclaimer: "This calculator is for educational purposes and is not a substitute for professional instruction. Always climb safely."
   },
   ms: {
     title: "Kalkulator Keselamatan Panjat Tebing",
@@ -48,6 +50,7 @@ export const translations = {
     kg: "kg",
     lbs: "lbs",
     calculate: "Kira Keselamatan",
+    calculating: "Mengira...",
     results: "Penilaian Keselamatan",
     safe: "✅ Kombinasi Selamat",
     caution: "⚠️ Guna dengan Berhati-hati",
@@ -77,7 +80,8 @@ export const translations = {
     belayerSignificantlyHeavierSafe: "Belayer jauh lebih berat. Belay dinamik adalah penting untuk mengelakkan tangkapan keras dan potensi kecederaan kepada pemanjat. Ini kekal sebagai gabungan berat belayer-pemanjat yang selamat.",
     climberSignificantlyHeavierUnsafe: "Pemanjat jauh lebih berat daripada belayer. Risiko tinggi belayer ditarik kuat ke dinding atau sauh pertama. Sauh tanah amat disyorkan.",
     climberHeavierCaution: "Pemanjat lebih berat daripada belayer. Belayer mesti menggunakan teknik dan kedudukan yang betul untuk menguruskan kejatuhan. Pertimbangkan sauh tanah.",
-    weightDifferenceAcceptable: "Perbezaan berat boleh diterima. Kekalkan teknik belay dan kesedaran yang betul."
+    weightDifferenceAcceptable: "Perbezaan berat boleh diterima. Kekalkan teknik belay dan kesedaran yang betul.",
+    disclaimer: "Kalkulator ini adalah untuk tujuan pendidikan dan bukan pengganti arahan profesional. Sentiasa memanjat dengan selamat."
   },
   zh: {
     title: "攀岩安全计算器",
@@ -87,6 +91,7 @@ export const translations = {
     kg: "公斤",
     lbs: "磅",
     calculate: "计算安全性",
+    calculating: "计算中...",
     results: "安全评估",
     safe: "✅ 安全组合",
     caution: "⚠️ 谨慎使用",
@@ -116,7 +121,8 @@ export const translations = {
     belayerSignificantlyHeavierSafe: "确保者明显更重。动态保护对于防止硬性捕捉和对攀岩者造成潜在伤害至关重要。这仍然是一个安全的确保者-攀岩者体重组合。",
     climberSignificantlyHeavierUnsafe: "攀岩者比确保者重得多。确保者被猛拉到墙上或第一个锚点的风险很高。强烈建议使用地面锚点。",
     climberHeavierCaution: "攀岩者比确保者重。确保者必须使用正确的技术和站位来管理坠落。考虑使用地面锚点。",
-    weightDifferenceAcceptable: "体重差异在可接受范围内。保持正确的保护技术和意识。"
+    weightDifferenceAcceptable: "体重差异在可接受范围内。保持正确的保护技术和意识。",
+    disclaimer: "此计算器仅用于教育目的，不能替代专业指导。请务必安全攀爬。"
   }
 };
 
