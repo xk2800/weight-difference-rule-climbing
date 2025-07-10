@@ -29,6 +29,7 @@ export default function Home() {
   });
 
   const [result, setResult] = useState<ResultState | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [language, setLanguage] = useState<Language>("en");
   const [commonPairs, setCommonPairs] = useState<Pair[]>([]);
 
@@ -51,22 +52,74 @@ export default function Home() {
   }, []);
 
   const calculateSafety = (data: FormData) => {
-    const climber = data.climberWeight;
-    const belayer = data.belayerWeight;
+    setIsLoading(true);
 
-    if (!climber || !belayer || climber <= 0 || belayer <= 0) return;
+    // Simulate calculation delay
+    setTimeout(() => {
+      const climber = data.climberWeight;
+      const belayer = data.belayerWeight;
 
-    const isHeavierClimber = climber > belayer;
+      if (!climber || !belayer || climber <= 0 || belayer <= 0) {
+        setIsLoading(false);
+        return;
+      };
 
-    if (!isHeavierClimber) {
-      const weightDiff = belayer - climber;
-      const percentDiff = (weightDiff / climber) * 100;
+      const isHeavierClimber = climber > belayer;
 
-      const safety: ResultState['safety'] = 'safe';
-      let recommendation = t.belayerHeavierSafe;
+      if (!isHeavierClimber) {
+        const weightDiff = belayer - climber;
+        const percentDiff = (weightDiff / climber) * 100;
 
-      if (percentDiff > 50) {
-        recommendation = t.belayerSignificantlyHeavierSafe;
+        const safety: ResultState['safety'] = 'safe';
+        let recommendation = t.belayerHeavierSafe;
+
+        if (percentDiff > 50) {
+          recommendation = t.belayerSignificantlyHeavierSafe;
+        }
+
+        setResult({
+          safety,
+          weightDiff: weightDiff.toFixed(1),
+          percentDiff: percentDiff.toFixed(1),
+          recommendation,
+          tips:
+            deviceRecommendations[data.device].tips[language] ||
+            deviceRecommendations[data.device].tips.en,
+          isHeavierClimber,
+        });
+        setIsLoading(false);
+        return;
+      }
+
+      const weightDiff = climber - belayer;
+      const percentDiff = (weightDiff / belayer) * 100;
+
+      const deviceConfig = deviceRecommendations[data.device];
+      let safety: ResultState['safety'] = 'safe';
+      let recommendation = '';
+
+      const experienceMultiplier: Record<Experience, number> = {
+        beginner: 0.8,
+        intermediate: 1.0,
+        advanced: 1.2
+      };
+
+      const adjustedMaxDiff = deviceConfig.maxDiff * experienceMultiplier[data.experience];
+      let adjustedMinDiff = deviceConfig.minDiff * experienceMultiplier[data.experience];
+
+      if (data.device === 'assistedActive' && (data.experience === 'intermediate' || data.experience === 'advanced')) {
+        adjustedMinDiff = adjustedMaxDiff;
+      }
+
+      if (percentDiff > adjustedMaxDiff) {
+        safety = 'unsafe';
+        recommendation = t.climberSignificantlyHeavierUnsafe;
+      } else if (percentDiff > adjustedMinDiff) {
+        safety = 'caution';
+        recommendation = t.climberHeavierCaution;
+      } else {
+        safety = 'safe';
+        recommendation = t.weightDifferenceAcceptable;
       }
 
       setResult({
@@ -74,53 +127,11 @@ export default function Home() {
         weightDiff: weightDiff.toFixed(1),
         percentDiff: percentDiff.toFixed(1),
         recommendation,
-        tips:
-          deviceRecommendations[data.device].tips[language] ||
-          deviceRecommendations[data.device].tips.en,
+        tips: deviceConfig.tips[language] || deviceConfig.tips.en,
         isHeavierClimber,
       });
-      return;
-    }
-
-    const weightDiff = climber - belayer;
-    const percentDiff = (weightDiff / belayer) * 100;
-
-    const deviceConfig = deviceRecommendations[data.device];
-    let safety: ResultState['safety'] = 'safe';
-    let recommendation = '';
-
-    const experienceMultiplier: Record<Experience, number> = {
-      beginner: 0.8,
-      intermediate: 1.0,
-      advanced: 1.2
-    };
-
-    const adjustedMaxDiff = deviceConfig.maxDiff * experienceMultiplier[data.experience];
-    let adjustedMinDiff = deviceConfig.minDiff * experienceMultiplier[data.experience];
-
-    if (data.device === 'assistedActive' && (data.experience === 'intermediate' || data.experience === 'advanced')) {
-      adjustedMinDiff = adjustedMaxDiff;
-    }
-
-    if (percentDiff > adjustedMaxDiff) {
-      safety = 'unsafe';
-      recommendation = t.climberSignificantlyHeavierUnsafe;
-    } else if (percentDiff > adjustedMinDiff) {
-      safety = 'caution';
-      recommendation = t.climberHeavierCaution;
-    } else {
-      safety = 'safe';
-      recommendation = t.weightDifferenceAcceptable;
-    }
-
-    setResult({
-      safety,
-      weightDiff: weightDiff.toFixed(1),
-      percentDiff: percentDiff.toFixed(1),
-      recommendation,
-      tips: deviceConfig.tips[language] || deviceConfig.tips.en,
-      isHeavierClimber,
-    });
+      setIsLoading(false);
+    }, 500); // 500ms delay
   };
 
   const savePair = () => {
@@ -161,7 +172,7 @@ export default function Home() {
                 form={form}
                 t={t}
               />
-              <Buttons savePair={savePair} t={t} />
+              <Buttons savePair={savePair} t={t} isLoading={isLoading} />
             </form>
           </div>
 
