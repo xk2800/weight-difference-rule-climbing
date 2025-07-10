@@ -1,3 +1,5 @@
+// Contains all translation strings for the application.
+// This object is structured by language code (en, ms, zh).
 export const translations = {
   en: {
     title: "Lead Climbing Safety Calculator",
@@ -88,4 +90,5 @@ export const translations = {
   }
 };
 
+// Defines the available languages as a TypeScript type.
 export type Language = keyof typeof translations; 

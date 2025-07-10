@@ -1,4 +1,4 @@
-// Device-specific recommendations
+// Contains device-specific data, including safety thresholds and tips.
 export const deviceRecommendations = {
   grigri: {
     maxDiff: 40,
@@ -38,4 +38,5 @@ export const deviceRecommendations = {
   }
 };
 
+// Defines the available belay devices as a TypeScript type.
 export type Device = keyof typeof deviceRecommendations; 
