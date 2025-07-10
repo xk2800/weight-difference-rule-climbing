@@ -1,15 +1,6 @@
-// Device-specific recommendations
+// Contains device-specific data, including safety thresholds and tips.
 export const deviceRecommendations = {
-  grigri: {
-    maxDiff: 40,
-    minDiff: 10,
-    tips: {
-      en: ["Always test the brake position", "Practice proper hand placement", "Never let go of the brake hand"],
-      ms: ["Sentiasa uji kedudukan brek", "Latih penempatan tangan yang betul", "Jangan lepaskan tangan brek"],
-      zh: ["始终测试制动位置", "练习正确的手部放置", "永远不要松开制动手"]
-    }
-  },
-  atc: {
+  manual: {
     maxDiff: 25,
     minDiff: 15,
     tips: {
@@ -18,7 +9,7 @@ export const deviceRecommendations = {
       zh: ["需要更多注意制动手", "考虑使用指导模式", "练习动态确保"]
     }
   },
-  megajul: {
+  assistedPassive: {
     maxDiff: 35,
     minDiff: 10,
     tips: {
@@ -27,15 +18,16 @@ export const deviceRecommendations = {
       zh: ["辅助制动装置", "适合体重差异", "学习正确的送绳技巧"]
     }
   },
-  reverso: {
-    maxDiff: 30,
-    minDiff: 15,
+  assistedActive: {
+    maxDiff: 40,
+    minDiff: 10,
     tips: {
-      en: ["Versatile device", "Can be used in guide mode", "Practice smooth rope feeding"],
-      ms: ["Peranti serbaguna", "Boleh guna dalam mod panduan", "Latih suapan tali yang lancar"],
-      zh: ["多功能装置", "可用于指导模式", "练习流畅的送绳"]
+      en: ["Always test the brake position", "Practice proper hand placement", "Never let go of the brake hand"],
+      ms: ["Sentiasa uji kedudukan brek", "Latih penempatan tangan yang betul", "Jangan lepaskan tangan brek"],
+      zh: ["始终测试制动位置", "练习正确的手部放置", "永远不要松开制动手"]
     }
   }
 };
 
-export type Device = keyof typeof deviceRecommendations; 
+// Defines the available belay devices as a TypeScript type.
+export type Device = keyof typeof deviceRecommendations | ''; 
