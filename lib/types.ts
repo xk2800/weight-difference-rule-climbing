@@ -12,6 +12,7 @@ export interface ResultState {
   percentDiff: string;
   recommendation: string;
   tips: string[];
+  isHeavierClimber: boolean;
 }
 
 // The structure of a saved climber-belayer pair

@@ -19,7 +19,7 @@ export default function Home() {
   // Unit for weight (kg or lbs)
   const [unit, setUnit] = useState<Unit>('kg');
   // Selected belay device
-  const [device, setDevice] = useState<Device>('grigri');
+  const [device, setDevice] = useState<Device>('');
   // Belayer's experience level
   const [experience, setExperience] = useState<Experience>('intermediate');
   // Stores the result of the safety calculation
@@ -58,6 +58,9 @@ export default function Home() {
    * belay device, and belayer experience.
    */
   const calculateSafety = () => {
+    // Abort if device is not selected
+    if (!device) return;
+
     const climber = parseFloat(climberWeight);
     const belayer = parseFloat(belayerWeight);
 
@@ -73,11 +76,11 @@ export default function Home() {
       const percentDiff = (weightDiff / climber) * 100;
 
       const safety: ResultState['safety'] = 'safe';
-      let recommendation = 'Belayer is heavier than the climber. This is a safe configuration. The belayer should focus on providing a dynamic catch to prevent a hard fall for the climber.';
+      let recommendation = t.belayerHeavierSafe;
 
       // Provide additional advice if the weight difference is very large.
       if (percentDiff > 50) { // e.g., belayer is > 1.5x climber's weight
-        recommendation = 'Belayer is significantly heavier. A dynamic belay is crucial to prevent a hard catch and potential injury to the climber. This remains a safe belayer-climber weight combination.';
+        recommendation = t.belayerSignificantlyHeavierSafe;
       }
 
       setResult({
@@ -85,7 +88,10 @@ export default function Home() {
         weightDiff: weightDiff.toFixed(1),
         percentDiff: percentDiff.toFixed(1),
         recommendation,
-        tips: deviceRecommendations[device].tips[language] || deviceRecommendations[device].tips.en
+        tips:
+          deviceRecommendations[device].tips[language] ||
+          deviceRecommendations[device].tips.en,
+        isHeavierClimber,
       });
       return;
     }
@@ -107,18 +113,22 @@ export default function Home() {
     };
 
     const adjustedMaxDiff = deviceConfig.maxDiff * experienceMultiplier[experience];
-    const adjustedMinDiff = deviceConfig.minDiff * experienceMultiplier[experience];
+    let adjustedMinDiff = deviceConfig.minDiff * experienceMultiplier[experience];
+
+    if (device === 'assistedActive' && (experience === 'intermediate' || experience === 'advanced')) {
+      adjustedMinDiff = adjustedMaxDiff;
+    }
 
     // Determine safety level based on adjusted thresholds.
     if (percentDiff > adjustedMaxDiff) {
       safety = 'unsafe';
-      recommendation = 'Climber is significantly heavier than the belayer. High risk of belayer being pulled hard into the wall or first anchor. A ground anchor is strongly recommended.';
+      recommendation = t.climberSignificantlyHeavierUnsafe;
     } else if (percentDiff > adjustedMinDiff) {
       safety = 'caution';
-      recommendation = 'Climber is heavier than the belayer. Belayer must use proper technique and positioning to manage falls. Consider a ground anchor.';
+      recommendation = t.climberHeavierCaution;
     } else {
       safety = 'safe';
-      recommendation = 'Weight difference is acceptable. Maintain proper belay technique and awareness.';
+      recommendation = t.weightDifferenceAcceptable;
     }
 
     setResult({
@@ -126,7 +136,8 @@ export default function Home() {
       weightDiff: weightDiff.toFixed(1),
       percentDiff: percentDiff.toFixed(1),
       recommendation,
-      tips: deviceConfig.tips[language] || deviceConfig.tips.en
+      tips: deviceConfig.tips[language] || deviceConfig.tips.en,
+      isHeavierClimber,
     });
   };
 

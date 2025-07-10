@@ -43,6 +43,13 @@ const Results = ({ result, unit, t }: ResultsProps) => {
           {t.weightDiff}: {result.weightDiff}
           {unit} ({result.percentDiff}%)
         </div>
+        <div className="text-sm text-gray-600 italic">
+          {parseFloat(result.weightDiff) === 0
+            ? t.equalWeight
+            : result.isHeavierClimber
+              ? t.climberHeavier
+              : t.belayerHeavier}
+        </div>
       </div>
 
       <div className="mb-4">

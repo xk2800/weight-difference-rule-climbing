@@ -1,3 +1,5 @@
+import { Button } from "./ui/button";
+
 interface ButtonsProps {
   calculateSafety: () => void;
   savePair: () => void;
@@ -16,19 +18,19 @@ interface ButtonsProps {
  */
 const Buttons = ({ calculateSafety, savePair, t }: ButtonsProps) => {
   return (
-    <div className="mt-6 flex space-x-4">
-      <button
+    <div className="mt-6 flex gap-4 max-md:flex-col">
+      <Button
         onClick={calculateSafety}
         className="flex-1 bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors font-medium"
       >
         {t.calculate}
-      </button>
-      <button
+      </Button>
+      <Button
         onClick={savePair}
-        className="px-4 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+        className="px-4 py-3 border-green-600 border-1 bg-white text-green-600 rounded-lg hover:border-green-700 hover:text-white hover:bg-green-700 transition-colors"
       >
         {t.save}
-      </button>
+      </Button>
     </div>
   );
 };

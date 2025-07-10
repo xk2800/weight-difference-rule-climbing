@@ -1,5 +1,15 @@
 import type { Device } from "@/lib/recommendations";
 import type { Experience, Unit } from "@/lib/types";
+import { Input } from "./ui/input";
+import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
+import { Label } from "./ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
 
 interface ClimberInputsProps {
   climberWeight: string;
@@ -40,11 +50,11 @@ const ClimberInputs = ({
           <label className="block text-sm font-medium text-gray-700 mb-2">
             {t.climberWeight} ({t[unit]})
           </label>
-          <input
+          <Input
             type="number"
             value={climberWeight}
             onChange={(e) => setClimberWeight(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent"
             placeholder="70"
           />
         </div>
@@ -53,37 +63,31 @@ const ClimberInputs = ({
           <label className="block text-sm font-medium text-gray-700 mb-2">
             {t.belayerWeight} ({t[unit]})
           </label>
-          <input
+          <Input
             type="number"
             value={belayerWeight}
             onChange={(e) => setBelayerWeight(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent"
             placeholder="65"
           />
         </div>
 
-        <div className="flex space-x-4">
-          <label className="flex items-center">
-            <input
-              type="radio"
-              value="kg"
-              checked={unit === 'kg'}
-              onChange={(e) => setUnit(e.target.value as Unit)}
-              className="mr-2"
-            />
-            {t.kg}
-          </label>
-          <label className="flex items-center">
-            <input
-              type="radio"
-              value="lbs"
-              checked={unit === 'lbs'}
-              onChange={(e) => setUnit(e.target.value as Unit)}
-              className="mr-2"
-            />
-            {t.lbs}
-          </label>
-        </div>
+        <RadioGroup
+          value={unit}
+          onValueChange={(value) => setUnit(value as Unit)}
+          defaultValue="kg"
+          className="flex space-x-4"
+        >
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="kg" className="mr-2" id="kg" />
+            <Label htmlFor="kg">{t.kg}</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="lbs" className="mr-2" id="lbs" />
+            <Label htmlFor="lbs">{t.lbs}</Label>
+          </div>
+        </RadioGroup>
+
       </div>
 
       <div className="space-y-4">
@@ -91,31 +95,44 @@ const ClimberInputs = ({
           <label className="block text-sm font-medium text-gray-700 mb-2">
             {t.device}
           </label>
-          <select
+          <Select
             value={device}
-            onChange={(e) => setDevice(e.target.value as Device)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            onValueChange={(value) => setDevice(value as Device)}
           >
-            <option value="grigri">{t.grigri}</option>
-            <option value="atc">{t.atc}</option>
-            <option value="megajul">{t.megajul}</option>
-            <option value="reverso">{t.reverso}</option>
-          </select>
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder="Select Belay Device" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="manual">
+                Manual Belay Device (Exp: ATC/Tube Style)
+              </SelectItem>
+              <SelectItem value="assistedPassive">
+                Assisted Belay - Passive (Exp: Mammut Smart 2.0)
+              </SelectItem>
+              <SelectItem value="assistedActive">
+                Assisted Belay - Active (Exp: GriGri/Neox)
+              </SelectItem>
+            </SelectContent>
+          </Select>
         </div>
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
             {t.experience}
           </label>
-          <select
+          <Select
             value={experience}
-            onChange={(e) => setExperience(e.target.value as Experience)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            onValueChange={(value) => setExperience(value as Experience)}
           >
-            <option value="beginner">{t.beginner}</option>
-            <option value="intermediate">{t.intermediate}</option>
-            <option value="advanced">{t.advanced}</option>
-          </select>
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder="Select Belayer Experience" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="beginner">{t.beginner}</SelectItem>
+              <SelectItem value="intermediate">{t.intermediate}</SelectItem>
+              <SelectItem value="advanced">{t.advanced}</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
       </div>
     </div>
