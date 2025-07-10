@@ -20,8 +20,8 @@ export default function Home() {
   const form = useForm<FormData>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      climberWeight: undefined,
-      belayerWeight: undefined,
+      climberWeight: 0,
+      belayerWeight: 0,
       unit: "kg",
       device: "manual",
       experience: "intermediate",
