@@ -199,12 +199,11 @@ export default function Home() {
       const weightDiff = belayer - climber;
       const percentDiff = (weightDiff / climber) * 100;
 
-      let safety: ResultState['safety'] = 'safe';
+      const safety: ResultState['safety'] = 'safe';
       let recommendation = 'Belayer is heavier than the climber. This is a safe configuration. The belayer should focus on providing a dynamic catch to prevent a hard fall for the climber.';
 
       if (percentDiff > 50) { // e.g., belayer is > 1.5x climber's weight
-        safety = 'caution';
-        recommendation = 'Belayer is significantly heavier. A dynamic belay is crucial to prevent a hard catch and potential injury to the climber.';
+        recommendation = 'Belayer is significantly heavier. A dynamic belay is crucial to prevent a hard catch and potential injury to the climber. This remains a safe belayer-climber weight combination.';
       }
 
       setResult({
