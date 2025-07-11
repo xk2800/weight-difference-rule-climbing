@@ -1,12 +1,11 @@
-import { Language } from "@/lib/translations";
+import { Language, translations } from "@/lib/translations";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
+import InstallButton from "./InstallButton";
 
 interface LanguageSelectorProps {
   language: Language;
   setLanguage: (language: Language) => void;
-  t: {
-    title: string;
-  };
+  t: typeof translations[Language];
 }
 
 /**
@@ -20,16 +19,8 @@ const LanguageSelector = ({ language, setLanguage, t }: LanguageSelectorProps) =
   return (
     <div className="flex justify-between items-center mb-6 gap-4 max-md:flex-col">
       <h1 className="text-3xl font-bold text-gray-800 max-md:order-2">{t.title}</h1>
-      <div className="max-md:w-full flex justify-end max-md:order-1 ">
-        {/* <select
-          value={language}
-          onChange={(e) => setLanguage(e.target.value as Language)}
-          className="px-3 py-2 border rounded-lg max-md:order-1"
-        >
-          <option value="en">English</option>
-          <option value="ms">Bahasa Malaysia</option>
-          <option value="zh">中文</option>
-        </select> */}
+      <div className="max-md:w-full flex justify-end max-md:order-1 gap-2">
+        <InstallButton language={language} t={t} />
         <Select
           value={language}
           onValueChange={(value) => setLanguage(value as Language)}
