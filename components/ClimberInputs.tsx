@@ -37,7 +37,7 @@ const ClimberInputs = ({ form, t }: ClimberInputsProps) => {
           <Input
             id="climberWeight"
             type="number"
-            {...register("climberWeight")}
+            {...register("climberWeight", { valueAsNumber: true })}
             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent"
             placeholder="70"
           />
@@ -58,7 +58,7 @@ const ClimberInputs = ({ form, t }: ClimberInputsProps) => {
           <Input
             id="belayerWeight"
             type="number"
-            {...register("belayerWeight")}
+            {...register("belayerWeight", { valueAsNumber: true })}
             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent"
             placeholder="65"
           />
