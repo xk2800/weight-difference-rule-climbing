@@ -51,6 +51,44 @@ export default function Home() {
     }
   }, []);
 
+  // Update result text when language changes
+  useEffect(() => {
+    if (result) {
+      const formData = form.getValues();
+      const deviceConfig = deviceRecommendations[formData.device];
+
+      let recommendation = '';
+
+      if (!result.isHeavierClimber) {
+        // Belayer is heavier
+        const climber = formData.climberWeight || 0;
+        const belayer = formData.belayerWeight || 0;
+        const percentDiff = ((belayer - climber) / climber) * 100;
+
+        if (percentDiff > 50) {
+          recommendation = t.belayerSignificantlyHeavierSafe;
+        } else {
+          recommendation = t.belayerHeavierSafe;
+        }
+      } else {
+        // Climber is heavier
+        if (result.safety === 'unsafe') {
+          recommendation = t.climberSignificantlyHeavierUnsafe;
+        } else if (result.safety === 'caution') {
+          recommendation = t.climberHeavierCaution;
+        } else {
+          recommendation = t.weightDifferenceAcceptable;
+        }
+      }
+
+      setResult({
+        ...result,
+        recommendation,
+        tips: deviceConfig.tips[language] || deviceConfig.tips.en,
+      });
+    }
+  }, [language, t, result?.safety, result?.isHeavierClimber, form]);
+
   const calculateSafety = (data: FormData) => {
     setIsLoading(true);
 
