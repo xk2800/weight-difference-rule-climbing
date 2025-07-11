@@ -40,7 +40,14 @@ export const translations = {
     climberSignificantlyHeavierUnsafe: "Climber is significantly heavier than the belayer. High risk of belayer being pulled hard into the wall or first anchor. A ground anchor is strongly recommended.",
     climberHeavierCaution: "Climber is heavier than the belayer. Belayer must use proper technique and positioning to manage falls. Consider a ground anchor.",
     weightDifferenceAcceptable: "Weight difference is acceptable. Maintain proper belay technique and awareness.",
-    disclaimer: "This calculator is for educational purposes and is not a substitute for professional instruction. Always climb safely."
+    disclaimer: "This calculator is for educational purposes and is not a substitute for professional instruction. Always climb safely.",
+
+    // Install prompt
+    installApp: "Install App",
+    installPromptTitle: "Install Climbing Calculator",
+    installPromptMessage: "Add this app to your home screen for quick access and offline use.",
+    installPromptInstall: "Install",
+    installPromptCancel: "Cancel"
   },
   ms: {
     title: "Kalkulator Keselamatan Panjat Tebing",
@@ -81,7 +88,14 @@ export const translations = {
     climberSignificantlyHeavierUnsafe: "Pemanjat jauh lebih berat daripada belayer. Risiko tinggi belayer ditarik kuat ke dinding atau sauh pertama. Sauh tanah amat disyorkan.",
     climberHeavierCaution: "Pemanjat lebih berat daripada belayer. Belayer mesti menggunakan teknik dan kedudukan yang betul untuk menguruskan kejatuhan. Pertimbangkan sauh tanah.",
     weightDifferenceAcceptable: "Perbezaan berat boleh diterima. Kekalkan teknik belay dan kesedaran yang betul.",
-    disclaimer: "Kalkulator ini adalah untuk tujuan pendidikan dan bukan pengganti arahan profesional. Sentiasa memanjat dengan selamat."
+    disclaimer: "Kalkulator ini adalah untuk tujuan pendidikan dan bukan pengganti arahan profesional. Sentiasa memanjat dengan selamat.",
+
+    // Install prompt
+    installApp: "Pasang Aplikasi",
+    installPromptTitle: "Pasang Kalkulator Panjat Tebing",
+    installPromptMessage: "Tambahkan aplikasi ini ke skrin utama untuk akses pantas dan penggunaan luar talian.",
+    installPromptInstall: "Pasang",
+    installPromptCancel: "Batal"
   },
   zh: {
     title: "攀岩安全计算器",
@@ -122,7 +136,14 @@ export const translations = {
     climberSignificantlyHeavierUnsafe: "攀岩者比确保者重得多。确保者被猛拉到墙上或第一个锚点的风险很高。强烈建议使用地面锚点。",
     climberHeavierCaution: "攀岩者比确保者重。确保者必须使用正确的技术和站位来管理坠落。考虑使用地面锚点。",
     weightDifferenceAcceptable: "体重差异在可接受范围内。保持正确的保护技术和意识。",
-    disclaimer: "此计算器仅用于教育目的，不能替代专业指导。请务必安全攀爬。"
+    disclaimer: "此计算器仅用于教育目的，不能替代专业指导。请务必安全攀爬。",
+
+    // Install prompt
+    installApp: "安装应用",
+    installPromptTitle: "安装攀岩计算器",
+    installPromptMessage: "将此应用添加到主屏幕以便快速访问和离线使用。",
+    installPromptInstall: "安装",
+    installPromptCancel: "取消"
   }
 };
 

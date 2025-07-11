@@ -13,6 +13,7 @@ import ClimberInputs from '@/components/ClimberInputs';
 import Buttons from '@/components/Buttons';
 import Results from '@/components/Results';
 import CommonPairs from '@/components/CommonPairs';
+import InstallPrompt from '@/components/InstallPrompt';
 import Link from 'next/link';
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 
@@ -239,6 +240,8 @@ export default function Home() {
           </footer>
         </div>
       </div>
+
+      <InstallPrompt language={language} t={t} />
     </>
   );
 }
