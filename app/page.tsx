@@ -81,13 +81,17 @@ export default function Home() {
         }
       }
 
-      setResult({
-        ...result,
-        recommendation,
-        tips: deviceConfig.tips[language] || deviceConfig.tips.en,
-      });
+      // Only update if the recommendation or tips have changed
+      const newTips = deviceConfig.tips[language] || deviceConfig.tips.en;
+      if (result.recommendation !== recommendation || result.tips !== newTips) {
+        setResult(prevResult => ({
+          ...prevResult!,
+          recommendation,
+          tips: newTips,
+        }));
+      }
     }
-  }, [language, t, result?.safety, result?.isHeavierClimber, form]);
+  }, [language, t, result, form]);
 
   const calculateSafety = (data: FormData) => {
     setIsLoading(true);
