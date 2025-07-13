@@ -17,11 +17,5 @@
       "sizes": "512x512",
       "type": "image/png"
     }
-  ],
-  "id": "84583934034023",
-  "dir": "ltr",
-  "lang": "en",
-  "categories": ["climbing", "lead", "safety"],
-  "prefer_related_applications": false,
-  "iarc_rating_id": "1"
+  ]
 }
