@@ -47,7 +47,7 @@ export const translations = {
     installPromptTitle: "Install Climbing Calculator",
     installPromptMessage: "Add this app to your home screen for quick access and offline use.",
     installPromptInstall: "Install",
-    installPromptCancel: "Cancel"
+    installPromptCancel: "Ignore"
   },
   ms: {
     title: "Kalkulator Keselamatan Panjat Tebing",
@@ -95,7 +95,7 @@ export const translations = {
     installPromptTitle: "Pasang Kalkulator Panjat Tebing",
     installPromptMessage: "Tambahkan aplikasi ini ke skrin utama untuk akses pantas dan penggunaan luar talian.",
     installPromptInstall: "Pasang",
-    installPromptCancel: "Batal"
+    installPromptCancel: "Abai"
   },
   zh: {
     title: "攀岩安全计算器",
@@ -143,7 +143,7 @@ export const translations = {
     installPromptTitle: "安装攀岩计算器",
     installPromptMessage: "将此应用添加到主屏幕以便快速访问和离线使用。",
     installPromptInstall: "安装",
-    installPromptCancel: "取消"
+    installPromptCancel: "忽略"
   }
 };
 
