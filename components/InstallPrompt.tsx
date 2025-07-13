@@ -30,6 +30,10 @@ export default function InstallPrompt({ t }: InstallPromptProps) {
 
     checkIfInstalled();
 
+    if (localStorage.getItem('installPromptDismissed') === 'true') {
+      return;
+    }
+
     // Listen for the beforeinstallprompt event
     const handleBeforeInstallPrompt = (e: Event) => {
       e.preventDefault();
@@ -74,6 +78,7 @@ export default function InstallPrompt({ t }: InstallPromptProps) {
   };
 
   const handleDismiss = () => {
+    localStorage.setItem('installPromptDismissed', 'true');
     setShowInstallPrompt(false);
     setDeferredPrompt(null);
   };
