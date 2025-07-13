@@ -10,7 +10,7 @@ const baseConfig: NextConfig = {
 
 const config = async (phase: string): Promise<NextConfig> => {
   if (phase === PHASE_DEVELOPMENT_SERVER || phase === PHASE_PRODUCTION_BUILD) {
-    const { withSerwist } = await import("./serwist-wrapper.js"); // must be JS
+    const { withSerwist } = await import("./serwist-wrapper.mjs"); // must be JS
     return withSerwist(baseConfig);
   }
 
