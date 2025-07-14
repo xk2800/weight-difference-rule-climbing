@@ -108,14 +108,15 @@ const ClimberInputs = ({ form, t }: ClimberInputsProps) => {
                   <SelectValue placeholder="Select Belay Device" />
                 </SelectTrigger>
                 <SelectContent>
+                  {/* TODO: Add Modal for Device Description */}
                   <SelectItem value="manual">
-                    Manual Belay Device (Exp: ATC/Tube Style)
+                    Manual Belay Device
                   </SelectItem>
                   <SelectItem value="assistedPassive">
-                    Assisted Belay - Passive (Exp: Mammut Smart 2.0)
+                    Assisted Belay - Passive
                   </SelectItem>
                   <SelectItem value="assistedActive">
-                    Assisted Belay - Active (Exp: GriGri/Neox)
+                    Assisted Belay - Active
                   </SelectItem>
                 </SelectContent>
               </Select>
