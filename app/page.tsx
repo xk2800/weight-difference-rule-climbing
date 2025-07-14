@@ -235,7 +235,7 @@ export default function Home() {
             </p>
             <p className='flex items-center justify-center gap-x-2 mt-2'>
               <Link href="https://github.com/xq-personal/weight-difference-rule-climbing" target='_blank'><GitHubLogoIcon /></Link>
-              Made by <Link href="https://www.instagram.com/ibecameamonkey/" className='underline' target='_blank'>@ibecameamonkey</Link> in Malaysia
+              Made by me, <Link href="https://www.instagram.com/ibecameamonkey/" className='underline' target='_blank'>@ibecameamonkey</Link> in Malaysia
             </p>
           </footer>
         </div>
