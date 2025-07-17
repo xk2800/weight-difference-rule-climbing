@@ -11,4 +11,7 @@ const withSerwist = withSerwistInit({
 
 export default withSerwist({
   // Your Next.js config
+  env: {
+    NEXT_PUBLIC_APP_VERSION: process.env.npm_package_version,
+  },
 });
