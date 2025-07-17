@@ -16,6 +16,23 @@ export function ModalProvider() {
     const storedDataRaw = localStorage.getItem(LOCAL_STORAGE_KEY);
     const storedData = storedDataRaw ? JSON.parse(storedDataRaw) : null;
 
+    // --- Start of Debugging ---
+    console.log("--- Modal Version Check ---");
+    console.log("✅ Current App Version:", currentVersion);
+    console.log("📦 Stored Data:", storedData);
+
+    if (storedData) {
+      console.log(`Comparison: '${storedData.version}' !== '${currentVersion}' is ${storedData.version !== currentVersion}`);
+    }
+    // --- End of Debugging ---
+
+    if (!storedData || storedData.version !== currentVersion) {
+      console.log("➡️ Decision: Show modal.");
+      setIsModalOpen(true);
+    } else {
+      console.log("➡️ Decision: Do not show modal.");
+    }
+
     // 2. Decide whether to show the modal
     // Show if there's no data or if the stored version doesn't match the current version
     if (!storedData || storedData.version !== currentVersion) {
