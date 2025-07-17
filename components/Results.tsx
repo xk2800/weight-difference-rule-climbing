@@ -1,9 +1,11 @@
 import type { ResultState, Unit } from "@/lib/types";
+import type { FormData } from "@/lib/schema";
 
 interface ResultsProps {
   result: ResultState | null;
   unit: Unit;
   t: { [key: string]: string };
+  formData: FormData;
 }
 
 /**
@@ -15,7 +17,7 @@ interface ResultsProps {
  * @param {Unit} props.unit - The currently selected weight unit.
  * @param {object} props.t - The translation object.
  */
-const Results = ({ result, unit, t }: ResultsProps) => {
+const Results = ({ result, unit, t, formData }: ResultsProps) => {
   if (!result) {
     return null;
   }
@@ -50,6 +52,11 @@ const Results = ({ result, unit, t }: ResultsProps) => {
               ? t.climberHeavier
               : t.belayerHeavier}
         </div>
+        {formData.useOhm && (
+          <div className="text-sm text-blue-600 font-medium mt-1">
+            ✓ {t.useOhm}
+          </div>
+        )}
       </div>
 
       <div className="mb-4">

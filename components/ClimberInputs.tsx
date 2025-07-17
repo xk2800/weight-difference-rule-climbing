@@ -11,6 +11,7 @@ import {
   SelectValue,
 } from "./ui/select";
 import { UseFormReturn } from "react-hook-form";
+import { Checkbox } from "./ui/checkbox";
 
 interface ClimberInputsProps {
   form: UseFormReturn<FormData>;
@@ -89,6 +90,25 @@ const ClimberInputs = ({ form, t }: ClimberInputsProps) => {
             </RadioGroup>
           )}
         />
+
+        <div>
+          <Controller
+            name="useOhm"
+            control={control}
+            render={({ field }) => (
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="useOhm"
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                />
+                <Label htmlFor="useOhm">
+                  {t.useOhm}
+                </Label>
+              </div>
+            )}
+          />
+        </div>
       </div>
 
       <div className="space-y-4">

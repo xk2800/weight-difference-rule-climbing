@@ -21,5 +21,6 @@ export interface Pair {
   belayer: number;
   unit: string;
   device: string;
+  useOhm: boolean;
   timestamp: string;
 } 
