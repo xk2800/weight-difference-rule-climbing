@@ -20,9 +20,9 @@ export function UpdateModal({ isOpen, onClose }: UpdateModalProps) {
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>🚀 What's New?</DialogTitle>
+          <DialogTitle>🚀 What&#39;s New?</DialogTitle>
           <DialogDescription>
-            We've released some exciting new features and improvements. Here's a quick rundown.
+            We&#39;ve released some exciting new features and improvements. Here&#39;s a quick rundown.
           </DialogDescription>
         </DialogHeader>
         <div className="py-4">
