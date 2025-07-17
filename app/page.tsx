@@ -26,6 +26,7 @@ export default function Home() {
       unit: "kg",
       device: "manual",
       experience: "intermediate",
+      useOhm: false,
     },
   });
 
@@ -97,15 +98,28 @@ export default function Home() {
   const calculateSafety = (data: FormData) => {
     setIsLoading(true);
 
+    console.log(data);
+
+
     // Simulate calculation delay
     setTimeout(() => {
       const climber = data.climberWeight;
-      const belayer = data.belayerWeight;
+      let belayer = data.belayerWeight;
 
       if (!climber || !belayer || climber <= 0 || belayer <= 0) {
         setIsLoading(false);
         return;
       };
+
+      // Add 25kg to belayer weight if using Ohm (regardless of unit - Ohm effect is constant)
+      if (data.useOhm) {
+        if (data.unit === "lbs") {
+          // Convert 25kg to lbs (25kg ≈ 55lbs)
+          belayer += 55;
+        } else {
+          belayer += 25;
+        }
+      }
 
       const isHeavierClimber = climber > belayer;
 
@@ -147,8 +161,12 @@ export default function Home() {
         advanced: 1.2
       };
 
-      const adjustedMaxDiff = deviceConfig.maxDiff * experienceMultiplier[data.experience];
-      let adjustedMinDiff = deviceConfig.minDiff * experienceMultiplier[data.experience];
+      // Use Ohm-specific thresholds if Ohm is being used
+      const maxDiff = data.useOhm ? deviceConfig.maxDiffWithOhm : deviceConfig.maxDiff;
+      const minDiff = data.useOhm ? deviceConfig.minDiffWithOhm : deviceConfig.minDiff;
+
+      const adjustedMaxDiff = maxDiff * experienceMultiplier[data.experience];
+      let adjustedMinDiff = minDiff * experienceMultiplier[data.experience];
 
       if (data.device === 'assistedActive' && (data.experience === 'intermediate' || data.experience === 'advanced')) {
         adjustedMinDiff = adjustedMaxDiff;
@@ -180,12 +198,13 @@ export default function Home() {
   const savePair = () => {
     form.trigger().then((isValid) => {
       if (isValid) {
-        const { climberWeight, belayerWeight, unit, device } = form.getValues();
+        const { climberWeight, belayerWeight, unit, device, useOhm } = form.getValues();
         const pair = {
           climber: climberWeight,
           belayer: belayerWeight,
           unit,
           device,
+          useOhm,
           timestamp: new Date().toISOString()
         };
 
@@ -219,7 +238,7 @@ export default function Home() {
             </form>
           </div>
 
-          {result && <Results result={result} unit={unit} t={t} />}
+          {result && <Results result={result} unit={unit} t={t} formData={form.getValues()} />}
 
           {commonPairs.length > 0 && (
             <CommonPairs

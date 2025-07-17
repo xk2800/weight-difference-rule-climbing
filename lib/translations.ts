@@ -33,6 +33,7 @@ export const translations = {
     belayerHeavier: "Belayer is heavier",
     equalWeight: "Both weigh the same",
     language: "Language",
+    useOhm: "Using Edelrid Ohm (+25kg)",
 
     // Recommendations text
     belayerHeavierSafe: "Belayer is heavier than the climber. This is a safe configuration. The belayer should focus on providing a dynamic catch to prevent a hard fall for the climber.",
@@ -81,6 +82,7 @@ export const translations = {
     belayerHeavier: "Belayer lebih berat",
     equalWeight: "Kedua-duanya mempunyai berat yang sama",
     language: "Bahasa",
+    useOhm: "Menggunakan Edelrid Ohm (+25kg)",
 
     // Recommendations text
     belayerHeavierSafe: "Belayer lebih berat daripada pemanjat. Ini adalah konfigurasi yang selamat. Belayer harus memberi tumpuan kepada memberikan tangkapan dinamik untuk mengelakkan pemanjat jatuh dengan kuat.",
@@ -129,6 +131,7 @@ export const translations = {
     belayerHeavier: "确保者较重",
     equalWeight: "两者体重相同",
     language: "语言",
+    useOhm: "使用 Edelrid Ohm (+25kg)",
 
     // Recommendations text
     belayerHeavierSafe: "确保者比攀岩者重。这是一个安全的配置。确保者应专注于提供动态保护，以防止攀岩者硬性坠落。",

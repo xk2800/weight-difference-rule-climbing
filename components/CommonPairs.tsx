@@ -47,7 +47,12 @@ const CommonPairs = ({
               {pair.unit} | {t.belayerWeight}: {pair.belayer}
               {pair.unit}
             </span>
-            <span className="text-sm text-gray-500">{pair.device}</span>
+            <div className="flex items-center gap-2 text-sm text-gray-500">
+              <span>{pair.device}</span>
+              {pair.useOhm && (
+                <span className="text-blue-600 font-medium">+ Ohm</span>
+              )}
+            </div>
           </div>
         ))}
       </div>
