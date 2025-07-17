@@ -7,6 +7,7 @@ const LOCAL_STORAGE_KEY = 'appUpdateInfo';
 
 export function ModalProvider() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const appVersion = process.env.NEXT_PUBLIC_APP_VERSION;
 
   useEffect(() => {
     // This effect runs only on the client
@@ -54,5 +55,5 @@ export function ModalProvider() {
     setIsModalOpen(false);
   };
 
-  return <UpdateModal isOpen={isModalOpen} onClose={handleClose} />;
+  return <UpdateModal isOpen={isModalOpen} onClose={handleClose} version={appVersion} />;
 }
