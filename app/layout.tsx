@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ModalProvider } from "@/components/Updates/modal-provider";
 import { ThemeProvider } from "@/components/theme-provider";
+import { LogRocketProvider } from "@/utils/LogRocketProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -71,10 +72,11 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <ModalProvider />
-          {children}
+          <LogRocketProvider>
+            {children}
+          </LogRocketProvider>
         </ThemeProvider>
-        <script defer src="https://umami.xavierkhew.com/script.js" data-website-id="d173b749-1e32-4cfc-ae32-1cfe838d27e7"></script>
-      </body>
+        <script defer src="https://umami.xavierkhew.com/script.js" data-website-id="4ffb86ce-53e6-417f-a602-1604ad1c5db7"></script>      </body>
     </html>
   );
 }
