@@ -31,7 +31,7 @@ const ClimberInputs = ({ form, t }: ClimberInputsProps) => {
         <div>
           <Label
             htmlFor="climberWeight"
-            className="block text-sm font-medium text-gray-700 mb-2"
+            className="block text-sm font-medium mb-2"
           >
             {t.climberWeight} ({t[form.watch("unit")]})
           </Label>
@@ -52,7 +52,7 @@ const ClimberInputs = ({ form, t }: ClimberInputsProps) => {
         <div>
           <Label
             htmlFor="belayerWeight"
-            className="block text-sm font-medium text-gray-700 mb-2"
+            className="block text-sm font-medium mb-2"
           >
             {t.belayerWeight} ({t[form.watch("unit")]})
           </Label>
@@ -115,7 +115,7 @@ const ClimberInputs = ({ form, t }: ClimberInputsProps) => {
         <div>
           <Label
             htmlFor="device"
-            className="block text-sm font-medium text-gray-700 mb-2"
+            className="block text-sm font-medium mb-2"
           >
             {t.device}
           </Label>
@@ -147,7 +147,7 @@ const ClimberInputs = ({ form, t }: ClimberInputsProps) => {
         <div>
           <Label
             htmlFor="experience"
-            className="block text-sm font-medium text-gray-700 mb-2"
+            className="block text-sm font-medium mb-2"
           >
             {t.experience}
           </Label>

@@ -1,5 +1,6 @@
 import type { ResultState, Unit } from "@/lib/types";
 import type { FormData } from "@/lib/schema";
+import { Card, CardContent } from "./ui/card";
 
 interface ResultsProps {
   result: ResultState | null;
@@ -23,60 +24,62 @@ const Results = ({ result, unit, t, formData }: ResultsProps) => {
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
-      <h2 className="text-2xl font-bold text-gray-800 mb-4">{t.results}</h2>
+    <Card className=" mb-6">
+      <CardContent>
+        <h2 className="text-2xl font-bold mb-4">{t.results}</h2>
 
-      <div
-        className={`p-4 rounded-lg mb-4 ${result.safety === "safe"
-          ? "bg-green-100 border-green-400"
-          : result.safety === "caution"
-            ? "bg-yellow-100 border-yellow-400"
-            : "bg-red-100 border-red-400"
-          } border-l-4`}
-      >
-        <div className="text-lg font-semibold mb-2">
-          {result.safety === "safe"
-            ? t.safe
+        <div
+          className={`p-4 rounded-lg mb-4 ${result.safety === "safe"
+            ? "bg-green-100 border-green-400"
             : result.safety === "caution"
-              ? t.caution
-              : t.unsafe}
-        </div>
-        <div className="text-sm text-gray-600">
-          {t.weightDiff}: {result.weightDiff}
-          {unit} ({result.percentDiff}%)
-        </div>
-        <div className="text-sm text-gray-600 italic">
-          {parseFloat(result.weightDiff) === 0
-            ? t.equalWeight
-            : result.isHeavierClimber
-              ? t.climberHeavier
-              : t.belayerHeavier}
-        </div>
-        {formData.useOhm && (
-          <div className="text-sm text-blue-600 font-medium mt-1">
-            ✓ {t.useOhm}
+              ? "bg-yellow-100 border-yellow-400"
+              : "bg-red-100 border-red-400"
+            } border-l-4`}
+        >
+          <div className="text-lg font-semibold mb-2 text-black">
+            {result.safety === "safe"
+              ? t.safe
+              : result.safety === "caution"
+                ? t.caution
+                : t.unsafe}
           </div>
-        )}
-      </div>
+          <div className="text-sm text-gray-600">
+            {t.weightDiff}: {result.weightDiff}
+            {unit} ({result.percentDiff}%)
+          </div>
+          <div className="text-sm text-gray-600 italic">
+            {parseFloat(result.weightDiff) === 0
+              ? t.equalWeight
+              : result.isHeavierClimber
+                ? t.climberHeavier
+                : t.belayerHeavier}
+          </div>
+          {formData.useOhm && (
+            <div className="text-sm text-blue-600 font-medium mt-1">
+              ✓ {t.useOhm}
+            </div>
+          )}
+        </div>
 
-      <div className="mb-4">
-        <h3 className="text-lg font-semibold text-gray-800 mb-2">
-          {t.recommendations}
-        </h3>
-        <p className="text-gray-700">{result.recommendation}</p>
-      </div>
+        <div className="mb-4">
+          <h3 className="text-lg font-semibold mb-2">
+            {t.recommendations}
+          </h3>
+          <p>{result.recommendation}</p>
+        </div>
 
-      <div>
-        <h3 className="text-lg font-semibold text-gray-800 mb-2">
-          {t.safetyTips}
-        </h3>
-        <ul className="list-disc list-inside text-gray-700 space-y-1">
-          {result.tips.map((tip, index) => (
-            <li key={index}>{tip}</li>
-          ))}
-        </ul>
-      </div>
-    </div>
+        <div>
+          <h3 className="text-lg font-semibold mb-2">
+            {t.safetyTips}
+          </h3>
+          <ul className="list-disc list-inside space-y-1">
+            {result.tips.map((tip, index) => (
+              <li key={index}>{tip}</li>
+            ))}
+          </ul>
+        </div>
+      </CardContent>
+    </Card>
   );
 };
 
