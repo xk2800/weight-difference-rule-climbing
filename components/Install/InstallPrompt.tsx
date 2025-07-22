@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { Button } from './ui/button';
-import { Download } from 'lucide-react';
+import { Button } from '../ui/button';
+import { Download, X } from 'lucide-react';
 import type { Language, translations } from '@/lib/translations';
 
 interface BeforeInstallPromptEvent extends Event {
@@ -10,13 +10,14 @@ interface BeforeInstallPromptEvent extends Event {
   userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>;
 }
 
-interface InstallButtonProps {
+interface InstallPromptProps {
   language: Language;
   t: typeof translations[Language];
 }
 
-export default function InstallButton({ t }: InstallButtonProps) {
+export default function InstallPrompt({ t }: InstallPromptProps) {
   const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
+  const [showInstallPrompt, setShowInstallPrompt] = useState(false);
   const [isInstalled, setIsInstalled] = useState(false);
 
   useEffect(() => {
@@ -29,15 +30,21 @@ export default function InstallButton({ t }: InstallButtonProps) {
 
     checkIfInstalled();
 
+    if (localStorage.getItem('installPromptDismissed') === 'true') {
+      return;
+    }
+
     // Listen for the beforeinstallprompt event
     const handleBeforeInstallPrompt = (e: Event) => {
       e.preventDefault();
       setDeferredPrompt(e as BeforeInstallPromptEvent);
+      setShowInstallPrompt(true);
     };
 
     // Listen for app installed event
     const handleAppInstalled = () => {
       setIsInstalled(true);
+      setShowInstallPrompt(false);
       setDeferredPrompt(null);
     };
 
@@ -67,22 +74,61 @@ export default function InstallButton({ t }: InstallButtonProps) {
     }
 
     setDeferredPrompt(null);
+    setShowInstallPrompt(false);
+  };
+
+  const handleDismiss = () => {
+    localStorage.setItem('installPromptDismissed', 'true');
+    setShowInstallPrompt(false);
+    setDeferredPrompt(null);
   };
 
   // Don't show if already installed or no prompt available
-  if (isInstalled || !deferredPrompt) {
+  if (isInstalled || !showInstallPrompt || !deferredPrompt) {
     return null;
   }
 
   return (
-    <Button
-      onClick={handleInstallClick}
-      variant="outline"
-      size="sm"
-      className="flex items-center gap-2"
-    >
-      <Download className="w-4 h-4" />
-      {t.installApp}
-    </Button>
+    <div className="fixed bottom-4 left-4 right-4 bg-white rounded-lg shadow-lg border border-gray-200 p-4 z-50 max-w-md mx-auto">
+      <div className="flex items-start justify-between">
+        <div className="flex items-center space-x-3">
+          <div className="flex-shrink-0">
+            <Download className="w-6 h-6 text-blue-600" />
+          </div>
+          <div className="flex-1">
+            <h3 className="text-sm font-medium text-gray-900">
+              {t.installPromptTitle}
+            </h3>
+            <p className="text-xs text-gray-500 mt-1">
+              {t.installPromptMessage}
+            </p>
+          </div>
+        </div>
+        <button
+          onClick={handleDismiss}
+          className="flex-shrink-0 text-gray-400 hover:text-gray-500"
+        >
+          <X className="w-4 h-4" />
+        </button>
+      </div>
+
+      <div className="mt-4 flex space-x-2">
+        <Button
+          onClick={handleInstallClick}
+          className="flex-1 bg-blue-600 hover:bg-blue-700 text-white"
+          size="sm"
+        >
+          {t.installPromptInstall}
+        </Button>
+        <Button
+          onClick={handleDismiss}
+          variant="outline"
+          className="flex-1"
+          size="sm"
+        >
+          {t.installPromptCancel}
+        </Button>
+      </div>
+    </div>
   );
 } 

@@ -1,6 +1,7 @@
 import { Language, translations } from "@/lib/translations";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
-import InstallButton from "./InstallButton";
+import InstallButton from "./Install/InstallButton";
+import { ModeToggle } from "./DarkMode/ModeTrigger";
 
 interface LanguageSelectorProps {
   language: Language;
@@ -18,8 +19,9 @@ interface LanguageSelectorProps {
 const LanguageSelector = ({ language, setLanguage, t }: LanguageSelectorProps) => {
   return (
     <div className="flex justify-between items-center mb-6 gap-4 max-md:flex-col">
-      <h1 className="text-3xl font-bold text-gray-800 max-md:order-2">{t.title}</h1>
+      <h1 className="text-3xl font-bold text-gray-800 max-md:order-2 dark:text-white">{t.title}</h1>
       <div className="max-md:w-full flex justify-end max-md:order-1 gap-2">
+        <ModeToggle />
         <InstallButton language={language} t={t} />
         <Select
           value={language}

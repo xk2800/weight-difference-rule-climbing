@@ -13,9 +13,10 @@ import ClimberInputs from '@/components/ClimberInputs';
 import Buttons from '@/components/Buttons';
 import Results from '@/components/Results';
 import CommonPairs from '@/components/CommonPairs';
-import InstallPrompt from '@/components/InstallPrompt';
+import InstallPrompt from '@/components/Install/InstallPrompt';
 import Link from 'next/link';
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
+import { Card, CardContent } from "@/components/ui/card";
 
 export default function Home() {
   const form = useForm<FormData>({
@@ -224,19 +225,21 @@ export default function Home() {
     <>
       <Heading key={language} t={t} />
 
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50 p-4">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50 p-4 dark:from-gray-700 dark:to-gray-950">
         <div className="max-w-4xl mx-auto">
-          <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
-            <LanguageSelector language={language} setLanguage={setLanguage} t={t} />
+          <Card className="mb-6"> {/* bg-white rounded-lg shadow-lg p-6 mb-6 */}
+            <CardContent>
+              <LanguageSelector language={language} setLanguage={setLanguage} t={t} />
 
-            <form onSubmit={form.handleSubmit(calculateSafety)}>
-              <ClimberInputs
-                form={form}
-                t={t}
-              />
-              <Buttons savePair={savePair} t={t} isLoading={isLoading} />
-            </form>
-          </div>
+              <form onSubmit={form.handleSubmit(calculateSafety)}>
+                <ClimberInputs
+                  form={form}
+                  t={t}
+                />
+                <Buttons savePair={savePair} t={t} isLoading={isLoading} />
+              </form>
+            </CardContent>
+          </Card>
 
           {result && <Results result={result} unit={unit} t={t} formData={form.getValues()} />}
 
