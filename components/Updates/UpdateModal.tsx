@@ -29,7 +29,9 @@ export function UpdateModal({ isOpen, onClose, version }: UpdateModalProps) {
         <div className="py-4">
           {/* Add your update details here */}
           <ul className="list-disc space-y-2 pl-5">
-            <li>Add dark mode support</li>
+            <li>Removed the calculate button.</li>
+            <li>Calculations are now done automatically.</li>
+            {/* <li>Add dark mode support</li> */}
             {/* <li>New feature: Add Edelrid Ohm into your calculation.</li>
             <li>Improved performance across the board.</li> */}
             {/* <li>Fixed a bug with the contact form.</li> */}
