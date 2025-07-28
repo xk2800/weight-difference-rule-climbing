@@ -10,7 +10,7 @@ import type { Experience, ResultState, Pair } from '../lib/types';
 import Heading from '@/components/Header/Heading';
 import LanguageSelector from '@/components/LanguageSelector';
 import ClimberInputs from '@/components/ClimberInputs';
-import Buttons from '@/components/Buttons';
+// import Buttons from '@/components/Buttons';
 import Results from '@/components/Results';
 import CommonPairs from '@/components/CommonPairs';
 import InstallPrompt from '@/components/Install/InstallPrompt';
@@ -200,25 +200,25 @@ export default function Home() {
     }
   }, [language, t, result, form]);
 
-  const savePair = () => {
-    form.trigger().then((isValid) => {
-      if (isValid) {
-        const { climberWeight, belayerWeight, unit, device, useOhm } = form.getValues();
-        const pair = {
-          climber: climberWeight,
-          belayer: belayerWeight,
-          unit,
-          device,
-          useOhm,
-          timestamp: new Date().toISOString()
-        };
+  // const savePair = () => {
+  //   form.trigger().then((isValid) => {
+  //     if (isValid) {
+  //       const { climberWeight, belayerWeight, unit, device, useOhm } = form.getValues();
+  //       const pair = {
+  //         climber: climberWeight,
+  //         belayer: belayerWeight,
+  //         unit,
+  //         device,
+  //         useOhm,
+  //         timestamp: new Date().toISOString()
+  //       };
 
-        const updated = [...commonPairs, pair].slice(-10);
-        setCommonPairs(updated);
-        localStorage.setItem('commonPairs', JSON.stringify(updated));
-      }
-    });
-  };
+  //       const updated = [...commonPairs, pair].slice(-10);
+  //       setCommonPairs(updated);
+  //       localStorage.setItem('commonPairs', JSON.stringify(updated));
+  //     }
+  //   });
+  // };
 
   const clearPairs = () => {
     setCommonPairs([]);
