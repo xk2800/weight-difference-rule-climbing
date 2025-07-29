@@ -79,7 +79,7 @@ export default function InstallButton({ t }: InstallButtonProps) {
       onClick={handleInstallClick}
       variant="outline"
       size="sm"
-      className="flex items-center gap-2"
+      className="flex items-center gap-2 h-auto"
     >
       <Download className="w-4 h-4" />
       {t.installApp}

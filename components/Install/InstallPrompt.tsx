@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '../ui/button';
 import { Download, X } from 'lucide-react';
 import type { Language, translations } from '@/lib/translations';
+import { Card } from '../ui/card';
 
 interface BeforeInstallPromptEvent extends Event {
   prompt(): Promise<void>;
@@ -89,17 +90,17 @@ export default function InstallPrompt({ t }: InstallPromptProps) {
   }
 
   return (
-    <div className="fixed bottom-4 left-4 right-4 bg-white rounded-lg shadow-lg border border-gray-200 p-4 z-50 max-w-md mx-auto">
+    <Card className="fixed bottom-4 left-4 right-4 rounded-lg shadow-lg border border-gray-200 p-4 z-50 max-w-md mx-auto">
       <div className="flex items-start justify-between">
         <div className="flex items-center space-x-3">
           <div className="flex-shrink-0">
-            <Download className="w-6 h-6 text-blue-600" />
+            <Download className="w-6 h-6" />
           </div>
           <div className="flex-1">
-            <h3 className="text-sm font-medium text-gray-900">
+            <h3 className="text-md font-medium">
               {t.installPromptTitle}
             </h3>
-            <p className="text-xs text-gray-500 mt-1">
+            <p className="text-sm mt-1">
               {t.installPromptMessage}
             </p>
           </div>
@@ -129,6 +130,6 @@ export default function InstallPrompt({ t }: InstallPromptProps) {
           {t.installPromptCancel}
         </Button>
       </div>
-    </div>
+    </Card>
   );
 } 
