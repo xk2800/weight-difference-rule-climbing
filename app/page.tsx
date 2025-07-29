@@ -231,9 +231,10 @@ export default function Home() {
 
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50 p-4 dark:from-gray-700 dark:to-gray-950">
         <div className="max-w-4xl mx-auto">
+          <LanguageSelector language={language} setLanguage={setLanguage} t={t} />
+          <h1 className="text-3xl font-bold text-center mb-5 max-md:order-2">{t.title}</h1>
           <Card className="mb-6"> {/* bg-white rounded-lg shadow-lg p-6 mb-6 */}
             <CardContent>
-              <LanguageSelector language={language} setLanguage={setLanguage} t={t} />
 
               <form>
                 <ClimberInputs
