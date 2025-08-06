@@ -18,7 +18,8 @@ const serwist = new Serwist({
   precacheEntries: self.__SW_MANIFEST,
   skipWaiting: true,
   clientsClaim: true,
-  navigationPreload: true,
+  // Disabled navigation preloading for broader browser compatibility (e.g., iOS Safari lacks support)
+  navigationPreload: false,
   runtimeCaching: defaultCache,
 });
 
