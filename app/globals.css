@@ -43,6 +43,19 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+@theme {
+  --color-even-darker-red: #991b1b;
+  --color-darker-red: #fecaca;
+  --color-lighter-red: #fef2f2;
+  --color-text-green: #166534;
+  --color-bg-green: #f0fdf4;
+  --color-border-green: #22c55e;
+
+  --color-even-darker-red_dark: #7f1d1d;
+  --color-brighter-red_dark: #ff0000;
+  --color-even-brighter-red_dark: #fecaca;
+}
+
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
