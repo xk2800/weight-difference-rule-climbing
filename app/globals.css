@@ -44,16 +44,31 @@
 }
 
 @theme {
+  --color-icon-red: #ef4444;
   --color-even-darker-red: #991b1b;
   --color-darker-red: #fecaca;
   --color-lighter-red: #fef2f2;
   --color-text-green: #166534;
+  --color-icon-green: #22c55e;
   --color-bg-green: #f0fdf4;
   --color-border-green: #22c55e;
+  --color-icon-yellow: #eab308;
+  --color-text-yellow: #854d0e;
+  --color-bg-yellow: #fefce8;
+  --color-border-yellow: #fef08a;
 
+  --color-icon-red_dark: #f87171;
   --color-even-darker-red_dark: #7f1d1d;
   --color-brighter-red_dark: #ff0000;
   --color-even-brighter-red_dark: #fecaca;
+  --color-icon-green_dark: #4ade80;
+  --color-bg-green_dark: #14532d;
+  --color-border-green_dark: #00ff61;
+  --color-text-green_dark: #bbf7d0;
+  --color-icon-yellow_dark: #facc15;
+  --color-text-yellow_dark: #fef08a;
+  --color-bg-yellow_dark: #713f12;
+  --color-border-yellow_dark: #ff8700;
 }
 
 :root {

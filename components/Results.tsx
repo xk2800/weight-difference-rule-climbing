@@ -3,9 +3,9 @@ import type { FormData } from "@/lib/schema";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 
-import IconDanger from "@/assets/IconDanger.svg";
-import IconSafe from "@/assets/IconSafe.svg";
-import IconCaution from "@/assets/IconCaution.svg";
+import IconDanger from './Icons/IconDanger';
+import IconCaution from './Icons/IconCaution';
+import IconSafe from './Icons/IconSafe'
 
 interface ResultsProps {
   result: ResultState | null;
@@ -34,9 +34,9 @@ const Results = ({ result, unit, t, formData }: ResultsProps) => {
       <div
         className={`p-4 rounded-lg mb-4 border-1
           ${result.safety === "safe"
-            ? "bg-bg-green border-border-green"
+            ? "bg-bg-green border-border-green dark:bg-bg-green_dark/30 dark:border-border-green_dark/85"
             : result.safety === "caution"
-              ? "bg-yellow-100 border-yellow-400"
+              ? "bg-bg-yellow border-border-yellow dark:bg-bg-yellow_dark/30 dark:border-border-yellow_dark/85"
               : "bg-lighter-red border-darker-red dark:bg-even-darker-red_dark/30 dark:border-brighter-red_dark/85"
           }`}
       >
@@ -44,10 +44,10 @@ const Results = ({ result, unit, t, formData }: ResultsProps) => {
           <div className="flex gap-3">
             <div className="text-3xl">
               {result.safety === "safe"
-                ? <Image src={IconSafe} alt="Safe" />
+                ? <IconSafe className="h-[32px] w-[32px] text-icon-green dark:text-icon-green_dark" />
                 : result.safety === "caution"
-                  ? <Image src={IconCaution} alt="Caution" />
-                  : <Image src={IconDanger} alt="Danger" />
+                  ? <IconCaution className="h-[32px] w-[32px] text-icon-yellow dark:text-icon-yellow_dark" />
+                  : <IconCaution className="h-[32px] w-[32px] text-icon-red dark:text-icon-red_dark" />
               }
             </div>
             <div>
@@ -55,9 +55,9 @@ const Results = ({ result, unit, t, formData }: ResultsProps) => {
                 {/* Displaying the safety level with appropriate styling */}
                 <div className={`text-lg font-bold mb-2 text-black
                 ${result.safety === "safe"
-                    ? "text-text-green"
+                    ? "text-text-green dark:text-text-green_dark"
                     : result.safety === "caution"
-                      ? "text-yellow-800"
+                      ? "text-text-yellow dark:text-text-yellow_dark"
                       : "text-even-darker-red dark:text-even-brighter-red_dark"
                   }`}
                 >
@@ -82,10 +82,16 @@ const Results = ({ result, unit, t, formData }: ResultsProps) => {
                 {/* ! TODO: BUG: even with OHM checked, warning shows climber heavier even when untrue */}
                 <div className="font-medium">
                   {parseFloat(result.weightDiff) === 0
-                    ? <p className="text-text-green">{t.equalWeight}</p>
+                    ? <p className="text-text-green dark:text-text-green_dark">{t.equalWeight}</p>
                     : result.isHeavierClimber
-                      ? <p className="text-even-darker-red dark:text-even-brighter-red_dark">{t.climberHeavier}</p>
-                      : <p className="">{t.belayerHeavier}</p>
+                      ? <p className={
+                        result.safety === "caution"
+                          ? "text-text-yellow dark:text-text-yellow_dark"
+                          : "text-even-darker-red dark:text-even-brighter-red_dark"
+                      }>
+                        {t.climberHeavier}
+                      </p>
+                      : <p className="text-text-green dark:text-text-green_dark">{t.belayerHeavier}</p>
                   }
                 </div>
               </div>
@@ -101,11 +107,11 @@ const Results = ({ result, unit, t, formData }: ResultsProps) => {
       </div>
 
       {/* Displaying the use of Ohm device if applicable */}
-      {formData.useOhm && (
+      {/* {formData.useOhm && (
         <div className="text-sm text-blue-600 font-medium mt-1">
           ✓ {t.useOhm}
         </div>
-      )}
+      )} */}
 
       <Card className="mb-6">
         <CardContent>
