@@ -1,9 +1,7 @@
 import type { ResultState, Unit } from "@/lib/types";
 import type { FormData } from "@/lib/schema";
 import { Card, CardContent } from "@/components/ui/card";
-import Image from "next/image";
 
-import IconDanger from './Icons/IconDanger';
 import IconCaution from './Icons/IconCaution';
 import IconSafe from './Icons/IconSafe'
 
