@@ -28,6 +28,7 @@ const ClimberInputs = ({ form, t }: ClimberInputsProps) => {
   return (
     <div className="grid md:grid-cols-2 gap-6">
       <div className="space-y-4">
+        <p className="font-bold text-xl">Climber & Belayer</p>
         <div>
           <Label
             htmlFor="climberWeight"
@@ -41,6 +42,7 @@ const ClimberInputs = ({ form, t }: ClimberInputsProps) => {
             {...register("climberWeight", { valueAsNumber: true })}
             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent"
             placeholder="70"
+          // value='40'
           />
           {errors.climberWeight && (
             <p className="text-red-500 text-xs mt-1">
@@ -62,6 +64,7 @@ const ClimberInputs = ({ form, t }: ClimberInputsProps) => {
             {...register("belayerWeight", { valueAsNumber: true })}
             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent"
             placeholder="65"
+          // value='32'
           />
           {errors.belayerWeight && (
             <p className="text-red-500 text-xs mt-1">
@@ -90,28 +93,10 @@ const ClimberInputs = ({ form, t }: ClimberInputsProps) => {
             </RadioGroup>
           )}
         />
-
-        <div>
-          <Controller
-            name="useOhm"
-            control={control}
-            render={({ field }) => (
-              <div className="flex items-center space-x-2">
-                <Checkbox
-                  id="useOhm"
-                  checked={field.value}
-                  onCheckedChange={field.onChange}
-                />
-                <Label htmlFor="useOhm">
-                  {t.useOhm}
-                </Label>
-              </div>
-            )}
-          />
-        </div>
       </div>
 
       <div className="space-y-4">
+        <p className="font-bold text-xl">Equipment & Experience</p>
         <div>
           <Label
             htmlFor="device"
@@ -165,6 +150,25 @@ const ClimberInputs = ({ form, t }: ClimberInputsProps) => {
                   <SelectItem value="advanced">{t.advanced}</SelectItem>
                 </SelectContent>
               </Select>
+            )}
+          />
+        </div>
+
+        <div>
+          <Controller
+            name="useOhm"
+            control={control}
+            render={({ field }) => (
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="useOhm"
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                />
+                <Label htmlFor="useOhm">
+                  {t.useOhm}
+                </Label>
+              </div>
             )}
           />
         </div>

@@ -1,0 +1,17 @@
+[
+  {
+    "version": "0.3.2",
+    "date": "2025-10-30",
+    "changes": ["Code Optimizations and performance improvements."]
+  },
+  {
+    "version": "0.3.1",
+    "date": "2025-7-28",
+    "changes": ["Removed the calculate button.", "Calculations are now done automatically."]
+  },
+  {
+    "version": "0.3.0",
+    "date": "2025-1-30",
+    "changes": ["Test 1", "Test 2"]
+  }
+]
