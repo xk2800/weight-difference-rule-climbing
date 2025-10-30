@@ -1,5 +1,10 @@
 [
   {
+    "version": "0.3.3",
+    "date": "2025-10-30",
+    "changes": ["Add change log screen to display version updates."]
+  },
+  {
     "version": "0.3.2",
     "date": "2025-10-30",
     "changes": ["Code Optimizations and performance improvements."]
@@ -11,7 +16,22 @@
   },
   {
     "version": "0.3.0",
-    "date": "2025-1-30",
-    "changes": ["Test 1", "Test 2"]
+    "date": "2025-7-28",
+    "changes": ["Removed the calculate button.", "Calculations are now done automatically."]
+  },
+  {
+    "version": "0.2.0",
+    "date": "2025-7-22",
+    "changes": ["Add dark mode support."]
+  },
+  {
+    "version": "0.1.3",
+    "date": "2025-7-18",
+    "changes": ["Minor Debugging tweaks."]
+  },
+  {
+    "version": "0.1.2",
+    "date": "2025-7-18",
+    "changes": ["New feature: Dark Mode!", "Improved performance across the board.", "Fixed a bug with the contact form."]
   }
 ]
