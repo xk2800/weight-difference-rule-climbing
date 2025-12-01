@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ModalProvider } from "@/components/Updates/modal-provider";
+import { ModalProvider as AddOnModal } from "@/components/AddOnSurvey/modal-provider";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LogRocketProvider } from "@/utils/LogRocketProvider";
 
@@ -72,6 +73,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <ModalProvider />
+          <AddOnModal />
           <LogRocketProvider>
             {children}
           </LogRocketProvider>
