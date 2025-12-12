@@ -7,6 +7,8 @@ const withSerwist = withSerwistInit({
   swDest: "public/sw.js",
   cacheOnNavigation: true,
   reloadOnOnline: true,
+  // Disable Serwist in development since it doesn't support Turbopack yet
+  disable: process.env.NODE_ENV !== "production",
 });
 
 export default withSerwist({
@@ -14,4 +16,6 @@ export default withSerwist({
   env: {
     NEXT_PUBLIC_APP_VERSION: process.env.npm_package_version,
   },
+  // Explicit turbopack configuration for Next.js 16
+  turbopack: {},
 });
